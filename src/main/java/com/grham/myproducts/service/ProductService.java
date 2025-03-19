@@ -7,7 +7,9 @@ import com.grham.myproducts.repository.ProductRepository;
 import com.grham.myproducts.repository.LocationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -34,5 +36,18 @@ public class ProductService {
     public Optional<ProductDTO> getProductById(String id) {
         return productRepository.findById(id).map(product ->
                 new ProductDTO(product.getId(), product.getName(), product.getLocation().getId(), product.getLocation().getName(), product.getLocation().getRoom()));
+    }
+
+    public List<ProductDTO> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(product -> new ProductDTO(
+                        product.getId(),
+                        product.getName(),
+                        product.getLocation().getId(),
+                        product.getLocation().getName(),
+                        product.getLocation().getRoom()
+                ))
+                .collect(Collectors.toList());
     }
 }

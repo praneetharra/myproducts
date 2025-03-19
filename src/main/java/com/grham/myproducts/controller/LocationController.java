@@ -7,6 +7,7 @@ import com.grham.myproducts.service.LocationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,5 +31,11 @@ public class LocationController {
         Optional<LocationDTO> locationDTO = locationService.getLocationById(id);
         return locationDTO.map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResourceNotFoundException("Location not found with id: " + id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<LocationDTO>> getAllLocations() {
+        List<LocationDTO> locations = locationService.getAllLocations();
+        return ResponseEntity.ok(locations);
     }
 }

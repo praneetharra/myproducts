@@ -27,7 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	// developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 
 	// H2 Database (for development, change to PostgreSQL/MySQL for production)
 	runtimeOnly 'com.h2database:h2'

@@ -35,4 +35,11 @@ public class LocationService {
                         .map(product -> new ProductDTO(product.getId(), product.getName(), location.getId(), location.getName(), location.getRoom()))
                         .collect(Collectors.toList())));
     }
+
+    public List<LocationDTO> getAllLocations() {
+        List<Location> locations = locationRepository.findAll();
+        return locations.stream()
+                .map(location -> new LocationDTO(location.getId(), location.getName(), location.getRoom(), location.getProducts(), "toAvoidErasure"))
+                .collect(Collectors.toList());
+    }
 }

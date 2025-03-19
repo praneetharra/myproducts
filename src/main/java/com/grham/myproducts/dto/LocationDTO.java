@@ -21,8 +21,11 @@ public class LocationDTO {
         this.id = id;
         this.name = name;
         this.room = room;
-        this.products = products.stream()
-                .map(product -> new ProductDTO(product.getId(), product.getName(), product.getLocation().getId(), product.getLocation().getName(), product.getLocation().getRoom()))
-                .collect(Collectors.toList());
+        this.products = null;
+        if(products != null){
+            this.products = products.stream()
+                    .map(product -> new ProductDTO(product.getId(), product.getName(), product.getLocation().getId(), product.getLocation().getName(), product.getLocation().getRoom()))
+                    .collect(Collectors.toList());
+        }
     }
 }
